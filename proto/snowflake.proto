@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package delz.snowflake;
+
+service Snowflake {
+    //生成id
+    rpc Gen(SnowflakeRequest) returns (SnowflakeReply) {}
+}
+
+//生成Snowflake输入参数
+message SnowflakeRequest {
+    //业务Id
+    int64 serviceId = 1;
+    //返回数据格式
+    string format = 2;
+}
+
+//生成Snowflake返回参数
+message SnowflakeReply {
+    string id = 1; 
+}
