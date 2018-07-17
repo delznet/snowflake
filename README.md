@@ -6,11 +6,11 @@
 
 1. 进入server目录
 
-go build -o ../bin/id-server
+    go build -o ../bin/id-server
 
 2. 将server目录下app.conf拷贝到../bin目录
 
-cp app.conf ../bin
+    cp app.conf ../bin
 
 3. 修改app.conf
 
@@ -27,14 +27,14 @@ cp app.conf ../bin
 ```
 
 说明: 
-（1）machine_id_bits+service_id_bits+step_bits 必须等于22
-（2）如果machine_id_bits为4，machine_id的取值范围是0-15（2的4次方），service_id也是同理。
-（3）不同启动实例的machine_id必须不同，service_id可以重复。
-（4）可以通过计算service_id,获取不同id的业务类型，比如有两种编码，一种表示位置编码，一种表示设备编码，通过设置不同的service_id可以区分。
+（1）machine_id_bits+service_id_bits+step_bits 必须等于22    
+（2）如果machine_id_bits为4，machine_id的取值范围是0-15（2的4次方），service_id也是同理。     
+（3）不同启动实例的machine_id必须不同，service_id可以重复。     
+（4）可以通过计算service_id,获取不同id的业务类型，比如有两种编码，一种表示位置编码，一种表示设备编码，通过设置不同的service_id可以区分。     
 
 4. 启动server
 
 ## 客户端
 
-1. golang客户端可参考client目录
+1. golang客户端可参考[client目录](https://github.com/delznet/snowflake/blob/master/client/main.go)
 2. [php客户端代码](https://github.com/delznet/snowflake-php-sdk)
