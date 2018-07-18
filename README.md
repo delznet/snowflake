@@ -21,8 +21,7 @@
     "machine_id_bits":4, //机器号位长度
     "service_id_bits":6, //业务位长度
     "step_bits":12, //序列位长度
-    "machine_id":0, //机器id
-    "service_id":0 //业务id
+    "machine_id":0 //机器id
 }
 ```
 

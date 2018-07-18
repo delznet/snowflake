@@ -23,7 +23,6 @@ type appConf struct {
 	ServiceIDBits uint8  `json:"service_id_bits"` //业务位长度
 	StepBits      uint8  `json:"step_bits"`       //序列位长度
 	MachineID     int64  `json:"machine_id"`      //机器id
-	ServiceID     int64  `json:"service_id"`      //业务id
 }
 
 var (
@@ -46,7 +45,6 @@ func newAppConf() appConf {
 		ServiceIDBits: 6,
 		StepBits:      12,
 		MachineID:     0,
-		ServiceID:     0,
 	}
 }
 
@@ -64,7 +62,7 @@ func getNode(machineID int64, serviceID int64) (*snowflake.Node, error) {
 }
 
 func (s *idServer) Gen(ctx context.Context, in *pb.SnowflakeRequest) (*pb.SnowflakeReply, error) {
-	Node, err := getNode(conf.MachineID, conf.ServiceID)
+	Node, err := getNode(conf.MachineID, in.ServiceId)
 	if err != nil {
 		return nil, err
 	}
