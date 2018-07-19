@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -28,6 +29,7 @@ type appConf struct {
 var (
 	nodeMap = make(map[int64]*snowflake.Node)
 	conf    appConf
+	configFile string
 )
 
 type idServer struct {
@@ -35,6 +37,7 @@ type idServer struct {
 
 func init() {
 	conf = newAppConf()
+	flag.StringVar(&configFile, "c", "", "config file path")
 }
 
 func newAppConf() appConf {
@@ -97,7 +100,8 @@ func (s *idServer) Gen(ctx context.Context, in *pb.SnowflakeRequest) (*pb.Snowfl
 func main() {
 	var confData []byte
 	var e error
-	if confData, e = ioutil.ReadFile("app.conf"); e != nil {
+	flag.Parse()
+	if confData, e = ioutil.ReadFile(configFile); e != nil {
 		checkErr(e)
 	}
 
